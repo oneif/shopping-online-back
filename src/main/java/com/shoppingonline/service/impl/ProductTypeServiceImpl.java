@@ -20,8 +20,8 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     }
 
     @Override
-    public void deleteProductTypeById(Integer id) {
-        productTypeMapper.deleteById(id);
+    public void deleteProductTypeById(String id) {
+        productTypeMapper.deleteById(Integer.valueOf(id));
     }
 
     @Override
@@ -29,10 +29,10 @@ public class ProductTypeServiceImpl implements ProductTypeService {
         productTypeMapper.updateById(productType);
     }
 
-//    @Override
-//    public ProductType selectProductTypeById(Integer id) {
-//        return productTypeMapper.selectById(id);
-//    }
+    @Override
+    public List<ProductType> search(String name) {
+        return productTypeMapper.search(name);
+    }
 
     @Override
     public List<ProductType> selectAllProductType() {

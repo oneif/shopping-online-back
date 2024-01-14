@@ -20,10 +20,10 @@ public interface ProductTypeMapper {
     @Update("UPDATE product_type SET name = #{name},description = #{description},icon_name = #{iconName} where id = #{id}")
     void updateById(ProductType productType);
 
-//    @Select("select id,name,description,icon_name from product_type where id=#{id}")
-//    ProductType selectById(Integer id);
+    @Select("SELECT id,name,description,icon_name FROM product_type WHERE `name` LIKE '%#{name}%'")
+    List<ProductType> search(String name);
 
-    @Select("select id,name,description,icon_name from product_type order by id desc")
+    @Select("select id,name,description,icon_name from product_type")
     List<ProductType> selectAll();
 
 }

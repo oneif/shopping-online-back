@@ -8,11 +8,11 @@ public interface ProductTypeService {
 
     void addProductType(ProductType productType);
 
-    void deleteProductTypeById(Integer id);
+    void deleteProductTypeById(String id);
 
     void updateProductType(ProductType productType);
 
-//    ProductType selectProductTypeById(Integer id);
+    List<ProductType> search(String name);
 
     List<ProductType> selectAllProductType();
 }
