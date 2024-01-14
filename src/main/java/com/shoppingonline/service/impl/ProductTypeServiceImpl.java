@@ -1,11 +1,13 @@
 package com.shoppingonline.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.shoppingonline.mapper.ProductTypeMapper;
 import com.shoppingonline.pojo.ProductType;
 import com.shoppingonline.service.ProductTypeService;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -16,12 +18,12 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 
     @Override
     public void addProductType(ProductType productType) {
-        productTypeMapper.addProductType(productType);
+        productTypeMapper.insert(productType);
     }
 
     @Override
     public void deleteProductTypeById(String id) {
-        productTypeMapper.deleteById(Integer.valueOf(id));
+        productTypeMapper.deleteById(id);
     }
 
     @Override
@@ -31,12 +33,13 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 
     @Override
     public List<ProductType> search(String name) {
-        return productTypeMapper.search(name);
+        LambdaQueryWrapper<ProductType> lqw = new LambdaQueryWrapper<>();
+        return productTypeMapper.selectList(lqw.like(ProductType::getName,name));
     }
 
     @Override
     public List<ProductType> selectAllProductType() {
-        return productTypeMapper.selectAll();
+        return productTypeMapper.selectList(null);
     }
 }
 

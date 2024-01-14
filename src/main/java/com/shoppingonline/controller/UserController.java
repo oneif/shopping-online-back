@@ -1,6 +1,5 @@
 package com.shoppingonline.controller;
 
-
 import com.shoppingonline.pojo.Result;
 import com.shoppingonline.pojo.User;
 import com.shoppingonline.service.UserService;

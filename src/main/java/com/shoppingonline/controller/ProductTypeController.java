@@ -27,14 +27,14 @@ public class ProductTypeController {
                 productTypeService.addProductType(productType);
                 return Result.success("添加成功");
             case "delete":
-                productTypeService.deleteProductTypeById(productType.getId());
+                productTypeService.deleteProductTypeById(String.valueOf(productType.getId()));
                 return Result.success("删除成功");
             case "update":
                 productTypeService.updateProductType(productType);
                 return Result.success("更新成功");
             case "search":
-
-
+                List<ProductType> search = productTypeService.search(productType.getName());
+                return Result.success("成功",search);
             case "selectAll":
                 List<ProductType> productTypes = productTypeService.selectAllProductType();
                 return Result.success("成功", productTypes);

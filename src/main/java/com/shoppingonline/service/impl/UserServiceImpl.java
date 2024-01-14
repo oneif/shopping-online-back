@@ -1,5 +1,6 @@
 package com.shoppingonline.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.shoppingonline.mapper.UserMapper;
 import com.shoppingonline.pojo.User;
 import com.shoppingonline.service.UserService;
@@ -15,13 +16,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByUserName(String username) {
-        return userMapper.findByUserName(username);
+        QueryWrapper<User> qw = new QueryWrapper<>();
+        return userMapper.selectOne(qw.eq("username",username));
     }
 
     @Override
     public void register(String username, String password) {
         String md5String = Md5Util.getMD5String(password);
-        userMapper.addUser(username, md5String);
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(md5String);
+        userMapper.insert(user);
     }
 }
 
